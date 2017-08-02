@@ -1,0 +1,507 @@
+/* line 1, ../sass/base/_base.scss */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 6, ../sass/base/_base.scss */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 12, ../sass/base/_base.scss */
+ul {
+  list-style: none;
+}
+
+/* line 16, ../sass/base/_base.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 20, ../sass/base/_base.scss */
+.container {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* line 27, ../sass/base/_base.scss */
+.container::after {
+  clear: both;
+}
+
+/* line 31, ../sass/base/_base.scss */
+.container:before, .container:after {
+  content: " ";
+  display: table;
+}
+
+/* line 1, ../sass/components/_itemcard.scss */
+a.item-card {
+  text-decoration: none;
+  text-align: left;
+  color: #000000;
+  cursor: pointer;
+}
+
+/* line 8, ../sass/components/_itemcard.scss */
+.item-card:before, .item-card:after {
+  content: " ";
+  display: table;
+}
+
+/* line 13, ../sass/components/_itemcard.scss */
+.item-card {
+  position: relative;
+  display: block;
+  padding: 88px 30px 30px;
+  min-height: 310px;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+/* line 23, ../sass/components/_itemcard.scss */
+.item-card-component .item-card-title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: block;
+  padding: 0 30px;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 4px 4px 0 0;
+  background-color: #86CDC5;
+}
+/* line 35, ../sass/components/_itemcard.scss */
+.item-card-component .item-card-title .duration {
+  position: absolute;
+  padding-left: 10px;
+  right: 30px;
+  text-align: right;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* line 45, ../sass/components/_itemcard.scss */
+.item-card-component .item-title {
+  margin: 0 0 20px;
+  line-height: 24px;
+  font-size: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* line 53, ../sass/components/_itemcard.scss */
+.item-card-component .item-card-description {
+  position: relative;
+  margin: 0;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+/* line 60, ../sass/components/_itemcard.scss */
+.item-card-component .item-tags-list {
+  position: absolute;
+  margin: 0;
+  height: 36px;
+  bottom: 25px;
+  left: 45px;
+  right: 125px;
+  overflow: hidden;
+  z-index: 2;
+  white-space: nowrap;
+  transition: opacity 0.15s ease 0.15s;
+}
+
+/* line 73, ../sass/components/_itemcard.scss */
+.item-card-component .tag-one {
+  text-align: left;
+}
+
+/* line 77, ../sass/components/_itemcard.scss */
+.item-card-component .item-tags-list li.item-tag {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  padding: 0 12px;
+  line-height: 32px;
+  font-size: 13px;
+  white-space: nowrap;
+  background: transparent;
+  border: 2px solid rgba(48, 73, 97, 0.1);
+  border-radius: 80px;
+  text-align: center;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+/* line 90, ../sass/components/_itemcard.scss */
+.item-card-component .item-tags-list li.item-tag:hover {
+  border-color: #86CDC5;
+  cursor: pointer;
+}
+
+/* line 96, ../sass/components/_itemcard.scss */
+.item-card-component .item-tags-list li:active {
+  transform: translateY(4px);
+}
+
+/* line 1, ../sass/components/_videocontent.scss */
+.back-button {
+  position: relative;
+  padding: 10px 40px;
+}
+
+/* line 6, ../sass/components/_videocontent.scss */
+.back-button:hover {
+  cursor: pointer;
+  -webkit-animation: back-button-move 1.5s infinite;
+  /* Safari 4.0 - 8.0 */
+  animation: back-button-move 1.5s infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes back-button-move {
+  from {
+    left: 0px;
+  }
+  to {
+    left: -8px;
+  }
+}
+@keyframes back-button-move {
+  from {
+    left: 0px;
+  }
+  to {
+    left: -8px;
+  }
+}
+/* line 23, ../sass/components/_videocontent.scss */
+.video-content-wrapper {
+  position: relative;
+  border-radius: 6px;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* line 29, ../sass/components/_videocontent.scss */
+.video-content-title {
+  position: absolute;
+  padding: 0 30px;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 6px 6px 0 0;
+  background-color: #86CDC5;
+  z-index: 2;
+}
+
+/* line 42, ../sass/components/_videocontent.scss */
+.video-player {
+  position: relative;
+  padding: 60px 0;
+  width: 100%;
+  background: #fff;
+}
+/* line 48, ../sass/components/_videocontent.scss */
+.video-player-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+/* line 54, ../sass/components/_videocontent.scss */
+.video-player-window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+/* ---- Video Player Control Section ---- */
+/* line 67, ../sass/components/_videocontent.scss */
+.video-controls {
+  position: absolute;
+  bottom: 0px;
+  height: 60px;
+  right: 0;
+  left: 0;
+  height: 60px;
+  line-height: 60px;
+  background-color: #86CDC5;
+  z-index: 2;
+}
+
+/* line 79, ../sass/components/_videocontent.scss */
+.video-controls .video-controls-wrapper {
+  display: inline-flex;
+  padding: 0 30px;
+  width: 100%;
+}
+/* line 84, ../sass/components/_videocontent.scss */
+.video-controls .video-controls-wrapper .control-item {
+  flex-grow: 1;
+  height: 60px;
+  line-height: 60px;
+}
+/* line 89, ../sass/components/_videocontent.scss */
+.video-controls .video-controls-wrapper .control-item.progress-bar {
+  flex-grow: 10;
+}
+/* line 92, ../sass/components/_videocontent.scss */
+.video-controls .video-controls-wrapper .control-item.video-time, .video-controls .video-controls-wrapper .control-item.volumn-bar {
+  flex-grow: 2;
+}
+
+/* ---- Video Description Section ---- */
+/* line 100, ../sass/components/_videocontent.scss */
+.video-description-section {
+  position: relative;
+  display: inline-flex;
+  padding: 30px 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* line 110, ../sass/components/_videocontent.scss */
+.flex-item {
+  position: relative;
+  display: inline-block;
+  padding: 60px 60px;
+  flex-grow: 1;
+}
+
+/* line 117, ../sass/components/_videocontent.scss */
+.description.flex-item {
+  flex-grow: 2;
+}
+
+/* line 121, ../sass/components/_videocontent.scss */
+.description.flex-item h2 {
+  margin-bottom: 10px;
+}
+
+/* line 125, ../sass/components/_videocontent.scss */
+.video-info.flex-item {
+  border-left: 1px solid #e2e5e8;
+}
+
+/* line 129, ../sass/components/_videocontent.scss */
+.map.video-location {
+  position: relative;
+}
+
+/* line 1, ../sass/components/_searchbar.scss */
+.search-component {
+  position: relative;
+  line-height: 24px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+/* line 9, ../sass/components/_searchbar.scss */
+.search.search-component {
+  padding: 18px 30px;
+}
+
+/* line 13, ../sass/components/_searchbar.scss */
+.search .search-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 50%;
+  bottom: 0;
+  z-index: 1;
+}
+
+/* line 22, ../sass/components/_searchbar.scss */
+.search .search-form {
+  position: relative;
+  padding-top: 10px;
+  width: 100%;
+  line-height: 24px;
+}
+
+/* line 29, ../sass/components/_searchbar.scss */
+.search .search-form input {
+  width: 100%;
+  background: #fff;
+  border: 0;
+}
+
+/* line 35, ../sass/components/_searchbar.scss */
+.input-text {
+  padding: 12px 15px;
+  color: #576366;
+  font-size: 14px;
+  outline: none;
+}
+
+/* line 42, ../sass/components/_searchbar.scss */
+.search-component .filter-dropdown {
+  text-align: right;
+  margin-left: 30px;
+}
+
+/* line 47, ../sass/components/_searchbar.scss */
+.search-component .filter-dropdown .filter-item {
+  position: relative;
+  display: inline-block;
+  margin: 0 -5px 0 10px;
+}
+
+/* line 53, ../sass/components/_searchbar.scss */
+.search-component .filter-dropdown .dropdown-label {
+  padding: 22px 10px;
+}
+
+/* line 57, ../sass/components/_searchbar.scss */
+.search-component .filter-dropdown .dropdown-label:hover {
+  cursor: pointer;
+}
+
+/* line 61, ../sass/components/_searchbar.scss */
+.search-component .filter-dropdown .dropdown-child {
+  position: absolute;
+  display: none;
+  padding: 5px 0;
+  text-align: left;
+  background: #fff;
+  border-radius: 4px;
+  z-index: 99;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* line 72, ../sass/components/_searchbar.scss */
+.search-component .filter-dropdown .dropdown-child {
+  padding: 10px 0px;
+  white-space: nowrap;
+}
+
+/* line 77, ../sass/components/_searchbar.scss */
+.search-component .filter-dropdown .dropdown-child li {
+  padding: 0 20px;
+}
+
+/* line 81, ../sass/components/_searchbar.scss */
+.search-component .filter-dropdown .dropdown-child li:hover {
+  cursor: pointer;
+  color: #576366;
+}
+
+/* line 1, ../sass/layouts/_header.scss */
+#header {
+  position: fixed;
+  display: block;
+  height: 66px;
+  width: 100%;
+  background-color: #18325B;
+  border-bottom: 1px solid #E2E5E8;
+  z-index: 100;
+}
+/* line 10, ../sass/layouts/_header.scss */
+#header .navbar-font-default {
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+/* line 18, ../sass/layouts/_header.scss */
+#header ul {
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+}
+/* line 25, ../sass/layouts/_header.scss */
+#header ul li {
+  display: inline-block;
+  line-height: 66px;
+  margin-left: 30px;
+}
+/* line 30, ../sass/layouts/_header.scss */
+#header ul li.navbar-logo {
+  float: left;
+  margin-right: 40px;
+  display: inline-block;
+  line-height: 66px;
+  margin-left: 30px;
+}
+/* line 38, ../sass/layouts/_header.scss */
+#header ul li.last-item {
+  margin-right: 30px;
+}
+/* line 40, ../sass/layouts/_header.scss */
+#header ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: #b2bbbd;
+}
+/* line 44, ../sass/layouts/_header.scss */
+#header ul li a:hover {
+  color: #FFFFFF;
+}
+
+/* line 1, ../sass/layouts/_body.scss */
+.flex-container {
+  display: flex;
+  margin: 0 -15px;
+  list-style: none;
+}
+
+/* line 7, ../sass/layouts/_body.scss */
+.item-cards .item-cards-wrapper {
+  position: relative;
+  display: block;
+  float: left;
+  padding: 0 15px;
+  margin-bottom: 30px;
+  width: 33.3%;
+}
+/* line 14, ../sass/layouts/_body.scss */
+.item-cards .item-cards-wrapper:active {
+  transform: translateY(4px);
+}
+
+/* line 2, ../sass/layouts/_footer.scss */
+#footer ul.footer-list {
+  display: inline-flex;
+  width: 100%;
+  border-top: 1px solid #b2bbbd;
+  list-style: none;
+  clear: both;
+}
+/* line 9, ../sass/layouts/_footer.scss */
+#footer ul.footer-list li {
+  display: inline-block;
+  flex-grow: 1;
+  line-height: 66px;
+  margin: 0 30px;
+  text-align: center;
+}
+/* line 15, ../sass/layouts/_footer.scss */
+#footer ul.footer-list li a {
+  text-decoration: none;
+}
+/* line 16, ../sass/layouts/_footer.scss */
+#footer ul.footer-list li.logo {
+  flex-grow: 4;
+  text-align: left;
+}
+/* line 20, ../sass/layouts/_footer.scss */
+#footer ul.footer-list li.copyright {
+  margin-right: 30px;
+  flex-grow: 3;
+  color: #b2bbbd;
+  text-align: right;
+}

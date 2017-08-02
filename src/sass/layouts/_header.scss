@@ -1,0 +1,48 @@
+#header {
+  position: fixed;
+  display: block;
+  height: 66px;
+  width: 100%;
+  background-color: $SPACE-CADET;
+  border-bottom: 1px solid $border-color;
+  z-index: 100;
+
+  .navbar-font-default {
+    font: {
+      family: sans-serif;
+      size: 18px;
+      weight: 500;
+    }
+  }
+
+  ul {
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    text-align: right;
+
+    li {
+      display: inline-block;
+      line-height: 66px;
+      margin-left: 30px;
+
+      &.navbar-logo {
+        float: left;
+        margin-right: 40px;
+        display: inline-block;
+        line-height: 66px;
+        margin-left: 30px;
+      }
+
+      &.last-item { margin-right: 30px; }
+
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color: #b2bbbd;
+        &:hover {color: $WHITE}
+      }
+    }
+  }
+}

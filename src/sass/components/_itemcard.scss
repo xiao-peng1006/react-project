@@ -1,0 +1,98 @@
+a.item-card {
+  text-decoration: none;
+  text-align: left;
+  color: #000000;
+  cursor: pointer;
+}
+
+.item-card:before, .item-card:after {
+    content: " ";
+    display: table;
+}
+
+.item-card {
+  position: relative;
+  display: block;
+  padding: 88px 30px 30px;
+  min-height: 310px;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.item-card-component .item-card-title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: block;
+  padding: 0 30px;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 4px 4px 0 0;
+  background-color: $theme-color;
+
+  .duration {
+    position: absolute;
+    padding-left: 10px;
+    right: 30px;
+    text-align: right;
+    font-size: 14px;
+    color: #fff;
+  }
+}
+
+.item-card-component .item-title {
+  margin: 0 0 20px;
+  line-height: 24px;
+  font-size: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.item-card-component .item-card-description {
+  position: relative;
+  margin: 0;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.item-card-component .item-tags-list {
+  position: absolute;
+  margin: 0;
+  height: 36px;
+  bottom: 25px;
+  left: 45px;
+  right: 125px;
+  overflow: hidden;
+  z-index: 2;
+  white-space: nowrap;
+  transition: opacity 0.15s ease 0.15s;
+}
+
+.item-card-component .tag-one {
+  text-align: left;
+}
+
+.item-card-component .item-tags-list li.item-tag {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  padding: 0 12px;
+  line-height: 32px;
+  font-size: 13px;
+  white-space: nowrap;
+  background: transparent;
+  border: 2px solid rgba(48, 73, 97, 0.1);
+  border-radius: 80px;
+  text-align: center;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  &:hover {
+    border-color: $theme-color;
+    cursor: pointer;
+  }
+}
+
+.item-card-component .item-tags-list li:active {
+  transform: translateY(4px);
+}

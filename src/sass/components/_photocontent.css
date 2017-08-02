@@ -1,0 +1,98 @@
+.back-button {
+  position: relative;
+  padding: 10px 40px;
+}
+
+.back-button:hover {
+  cursor: pointer;
+  -webkit-animation: back-button-move 1.5s infinite; /* Safari 4.0 - 8.0 */
+  animation: back-button-move 1.5s infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes back-button-move {
+    from {left: 0px;}
+    to {left: -8px;}
+}
+
+@keyframes back-button-move {
+    from {left: 0px;}
+    to {left: -8px;}
+}
+
+.photo-content-wrapper {
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+.photo-content-title {
+  position: absolute;
+  padding: 0 30px;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 6px 6px 0 0;
+  background-color: #5eedb1;
+  z-index: 2;
+}
+
+.photo-player {
+  position: relative;
+  padding: 60px 0;
+  height: 780px;
+  width: 100%;
+  background: #fff;
+}
+
+
+/* ---- Video Player Control Section ---- */
+.photo-control {
+  position: absolute;
+  bottom: 0px;
+  height: 60px;
+  right: 0;
+  left: 0;
+  height: 60px;
+  line-height: 60px;
+  background-color: #5eedb1;
+  z-index: 2;
+}
+
+/* ---- Video Description Section ---- */
+
+.photo-description-section {
+  position: relative;
+  display: inline-flex;
+  padding: 60px 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+.flex-item {
+  position: relative;
+  display: inline-block;
+  padding: 0 60px;
+  flex-grow: 1;
+}
+
+.description.flex-item {
+  flex-grow: 2;
+}
+
+.description.flex-item h2 {
+  margin-bottom: 10px;
+}
+
+.photo-info.flex-item {
+  border-left: 1px solid #e2e5e8;
+}
+
+.map.photo-location {
+  position: relative;
+
+}

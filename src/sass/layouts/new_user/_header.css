@@ -1,0 +1,50 @@
+.header {
+    height: 66px;
+    width: 100%;
+}
+
+.header {
+  display: block;
+  background-color: #fff;
+  border-bottom: 1px solid #e2e5e8;
+  z-index: 100;
+  position: fixed;
+}
+
+.navbar-font-default {
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.header ul {
+  list-style: none;
+  position: relative;
+  margin: 0 auto;
+  text-align: right;
+}
+
+.header ul li {
+  display: inline-block;
+  line-height: 66px;
+  margin-left: 30px;
+}
+
+.header ul li.navbar-logo {
+  float: left;
+  padding-right: 40px;
+}
+
+.header ul li.last-item {
+  margin-right: 30px;
+}
+
+.header ul li a {
+  text-decoration: none;
+  display: inline-block;
+  color: #b2bbbd;
+}
+
+.header ul li a:hover  {
+  color: #000000;
+}

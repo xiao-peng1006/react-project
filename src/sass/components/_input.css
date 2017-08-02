@@ -1,0 +1,33 @@
+.input-box {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.input-box label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translate(0, -50%);
+  line-height: 1.3;
+  color: #7b8b8e;
+  cursor: text;
+  font-size: 14px;
+}
+
+.input-box input {
+  margin: 0 auto;
+  padding: 10px 10px;
+  width: 100%;
+  border: 2px solid #e8ebed;
+  border-radius: 6px;
+  background: #e8ebed;
+  transition: .2s;
+  font-size: 14px;
+  z-index: 2;
+}
+
+.input-box input:focus {
+  outline: none;
+  background: #fff;
+  border-color: #d4d9dd;
+}

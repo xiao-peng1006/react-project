@@ -1,0 +1,28 @@
+#footer {
+  ul.footer-list {
+    display: inline-flex;
+    width: 100%;
+    border-top: 1px solid #b2bbbd;
+    list-style: none;
+    clear: both;
+
+    li {
+      display: inline-block;
+      flex-grow: 1;
+      line-height: 66px;
+      margin: 0 30px;
+      text-align: center;
+      a { text-decoration: none; }
+      &.logo {
+        flex-grow: 4;
+        text-align: left;
+      }
+      &.copyright {
+        margin-right: 30px;
+        flex-grow: 3;
+        color: #b2bbbd;
+        text-align: right;
+      }
+    }
+  }
+}
