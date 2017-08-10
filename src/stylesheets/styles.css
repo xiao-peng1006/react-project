@@ -17,7 +17,7 @@ ul {
 }
 
 /* line 16, ../sass/base/_base.scss */
-a {
+a, Link {
   text-decoration: none;
 }
 
@@ -30,11 +30,19 @@ a {
 }
 
 /* line 27, ../sass/base/_base.scss */
+.container.side-spacer {
+  position: relative;
+  max-width: 1310px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+/* line 34, ../sass/base/_base.scss */
 .container::after {
   clear: both;
 }
 
-/* line 31, ../sass/base/_base.scss */
+/* line 38, ../sass/base/_base.scss */
 .container:before, .container:after {
   content: " ";
   display: table;
@@ -109,6 +117,9 @@ a.item-card {
 .item-card-component .item-tags-list {
   position: absolute;
   margin: 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   height: 36px;
   bottom: 25px;
   left: 45px;
@@ -119,16 +130,16 @@ a.item-card {
   transition: opacity 0.15s ease 0.15s;
 }
 
-/* line 73, ../sass/components/_itemcard.scss */
+/* line 77, ../sass/components/_itemcard.scss */
 .item-card-component .tag-one {
+  margin-right: 10px;
   text-align: left;
 }
 
-/* line 77, ../sass/components/_itemcard.scss */
+/* line 83, ../sass/components/_itemcard.scss */
 .item-card-component .item-tags-list li.item-tag {
   position: relative;
   display: inline-block;
-  margin-right: 10px;
   padding: 0 12px;
   line-height: 32px;
   font-size: 13px;
@@ -138,30 +149,51 @@ a.item-card {
   border-radius: 80px;
   text-align: center;
   transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  z-index: 3;
 }
-/* line 90, ../sass/components/_itemcard.scss */
+/* line 96, ../sass/components/_itemcard.scss */
 .item-card-component .item-tags-list li.item-tag:hover {
   border-color: #86CDC5;
   cursor: pointer;
 }
+/* line 101, ../sass/components/_itemcard.scss */
+.item-card-component .item-tags-list li.item-tag span {
+  height: 32px;
+  line-height: 32px;
+  pointer-events: none;
+}
 
-/* line 96, ../sass/components/_itemcard.scss */
+/* line 108, ../sass/components/_itemcard.scss */
 .item-card-component .item-tags-list li:active {
-  transform: translateY(4px);
+  background-color: #86CDC5;
 }
 
 /* line 1, ../sass/components/_videocontent.scss */
-.back-button {
-  position: relative;
-  padding: 10px 40px;
+.video-page {
+  background-color: #E1F6F4;
 }
 
 /* line 6, ../sass/components/_videocontent.scss */
+.back-button {
+  position: relative;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 60px;
+  padding: 20px 40px 10px 40px;
+}
+/* line 13, ../sass/components/_videocontent.scss */
 .back-button:hover {
   cursor: pointer;
   -webkit-animation: back-button-move 1.5s infinite;
   /* Safari 4.0 - 8.0 */
   animation: back-button-move 1.5s infinite;
+}
+/* line 18, ../sass/components/_videocontent.scss */
+.back-button-link {
+  line-height: 30px;
+  vertical-align: baseline;
+  font-size: 18px;
 }
 
 /* Safari 4.0 - 8.0 */
@@ -181,15 +213,19 @@ a.item-card {
     left: -8px;
   }
 }
-/* line 23, ../sass/components/_videocontent.scss */
-.video-content-wrapper {
+/* line 38, ../sass/components/_videocontent.scss */
+#video-content {
+  /* ---- Video Player Control Section ---- */
+  /* ---- Video Description Section ---- */
+}
+/* line 39, ../sass/components/_videocontent.scss */
+#video-content .video-content-wrapper {
   position: relative;
   border-radius: 6px;
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
 }
-
-/* line 29, ../sass/components/_videocontent.scss */
-.video-content-title {
+/* line 44, ../sass/components/_videocontent.scss */
+#video-content .video-content-wrapper .video-content-title {
   position: absolute;
   padding: 0 30px;
   top: 0;
@@ -201,22 +237,21 @@ a.item-card {
   background-color: #86CDC5;
   z-index: 2;
 }
-
-/* line 42, ../sass/components/_videocontent.scss */
-.video-player {
+/* line 57, ../sass/components/_videocontent.scss */
+#video-content .video-content-wrapper .video-player {
   position: relative;
   padding: 60px 0;
   width: 100%;
   background: #fff;
 }
-/* line 48, ../sass/components/_videocontent.scss */
-.video-player-wrapper {
+/* line 63, ../sass/components/_videocontent.scss */
+#video-content .video-content-wrapper .video-player-wrapper {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
 }
-/* line 54, ../sass/components/_videocontent.scss */
-.video-player-window {
+/* line 69, ../sass/components/_videocontent.scss */
+#video-content .video-content-wrapper .video-player-window {
   position: absolute;
   top: 0;
   left: 0;
@@ -224,10 +259,8 @@ a.item-card {
   height: 100%;
   background: transparent;
 }
-
-/* ---- Video Player Control Section ---- */
-/* line 67, ../sass/components/_videocontent.scss */
-.video-controls {
+/* line 81, ../sass/components/_videocontent.scss */
+#video-content .video-controls {
   position: absolute;
   bottom: 0px;
   height: 60px;
@@ -238,65 +271,57 @@ a.item-card {
   background-color: #86CDC5;
   z-index: 2;
 }
-
-/* line 79, ../sass/components/_videocontent.scss */
-.video-controls .video-controls-wrapper {
+/* line 93, ../sass/components/_videocontent.scss */
+#video-content .video-controls .video-controls-wrapper {
   display: inline-flex;
   padding: 0 30px;
   width: 100%;
 }
-/* line 84, ../sass/components/_videocontent.scss */
-.video-controls .video-controls-wrapper .control-item {
+/* line 98, ../sass/components/_videocontent.scss */
+#video-content .video-controls .video-controls-wrapper .control-item {
   flex-grow: 1;
   height: 60px;
   line-height: 60px;
 }
-/* line 89, ../sass/components/_videocontent.scss */
-.video-controls .video-controls-wrapper .control-item.progress-bar {
+/* line 103, ../sass/components/_videocontent.scss */
+#video-content .video-controls .video-controls-wrapper .control-item.progress-bar {
   flex-grow: 10;
 }
-/* line 92, ../sass/components/_videocontent.scss */
-.video-controls .video-controls-wrapper .control-item.video-time, .video-controls .video-controls-wrapper .control-item.volumn-bar {
+/* line 106, ../sass/components/_videocontent.scss */
+#video-content .video-controls .video-controls-wrapper .control-item.video-time, #video-content .video-controls .video-controls-wrapper .control-item.volumn-bar {
   flex-grow: 2;
 }
-
-/* ---- Video Description Section ---- */
-/* line 100, ../sass/components/_videocontent.scss */
-.video-description-section {
+/* line 114, ../sass/components/_videocontent.scss */
+#video-content .video-description-section {
   position: relative;
   display: inline-flex;
   padding: 30px 0;
   width: 100%;
-  background: #fff;
+  background: #FFFFFF;
   border-radius: 0 0 6px 6px;
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
 }
-
-/* line 110, ../sass/components/_videocontent.scss */
-.flex-item {
+/* line 124, ../sass/components/_videocontent.scss */
+#video-content .flex-item {
   position: relative;
   display: inline-block;
   padding: 60px 60px;
   flex-grow: 1;
 }
-
-/* line 117, ../sass/components/_videocontent.scss */
-.description.flex-item {
+/* line 131, ../sass/components/_videocontent.scss */
+#video-content .description.flex-item {
   flex-grow: 2;
 }
-
-/* line 121, ../sass/components/_videocontent.scss */
-.description.flex-item h2 {
+/* line 135, ../sass/components/_videocontent.scss */
+#video-content .description.flex-item h2 {
   margin-bottom: 10px;
 }
-
-/* line 125, ../sass/components/_videocontent.scss */
-.video-info.flex-item {
+/* line 139, ../sass/components/_videocontent.scss */
+#video-content .video-info.flex-item {
   border-left: 1px solid #e2e5e8;
 }
-
-/* line 129, ../sass/components/_videocontent.scss */
-.map.video-location {
+/* line 143, ../sass/components/_videocontent.scss */
+#video-content .map.video-location {
   position: relative;
 }
 
@@ -405,7 +430,7 @@ a.item-card {
   display: block;
   height: 66px;
   width: 100%;
-  background-color: #18325B;
+  background-color: #FFFFFF;
   border-bottom: 1px solid #E2E5E8;
   z-index: 100;
 }
@@ -449,17 +474,108 @@ a.item-card {
 }
 /* line 44, ../sass/layouts/_header.scss */
 #header ul li a:hover {
-  color: #FFFFFF;
+  color: #000000;
 }
 
-/* line 1, ../sass/layouts/_body.scss */
+/* line 1, ../sass/layouts/_home.scss */
+.home-image {
+  width: 100%;
+  background-image: url("../images/home.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+/* line 8, ../sass/layouts/_home.scss */
+.home-image-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+/* line 1, ../sass/layouts/_about.scss */
+.about-page {
+  background-color: #E1F6F4;
+}
+/* line 3, ../sass/layouts/_about.scss */
+.about-page .container {
+  padding-top: 60px;
+}
+/* line 6, ../sass/layouts/_about.scss */
+.about-page-wrapper {
+  background-color: #FFFFFF;
+  border-radius: 6px;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+}
+/* line 12, ../sass/layouts/_about.scss */
+.about-page .intro-image {
+  position: relative;
+  width: 100%;
+}
+/* line 16, ../sass/layouts/_about.scss */
+.about-page .intro-image-mask {
+  padding-bottom: 56.25%;
+  height: 0;
+}
+/* line 21, ../sass/layouts/_about.scss */
+.about-page .intro-image-window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+/* line 29, ../sass/layouts/_about.scss */
+.about-page .intro-image-window img {
+  width: 100%;
+  height: 100%;
+}
+/* line 37, ../sass/layouts/_about.scss */
+.about-page .about-page-description {
+  position: relative;
+  display: inline-flex;
+  padding: 30px 0;
+  width: 100%;
+}
+/* line 44, ../sass/layouts/_about.scss */
+.about-page .about-page-description .page-description {
+  flex-grow: 2;
+}
+/* line 47, ../sass/layouts/_about.scss */
+.about-page .about-page-description .page-description-wrapper {
+  padding: 60px;
+  text-align: center;
+}
+/* line 53, ../sass/layouts/_about.scss */
+.about-page .about-page-description .self-intro {
+  flex-grow: 1;
+  border-left: 1px solid #e2e5e8;
+}
+/* line 56, ../sass/layouts/_about.scss */
+.about-page .about-page-description .self-intro-wrapper {
+  padding: 60px;
+}
+
+/* line 1, ../sass/layouts/_explore.scss */
+.explore-page {
+  background-color: #E1F6F4;
+}
+/* line 3, ../sass/layouts/_explore.scss */
+.explore-page .container {
+  padding-top: 60px;
+}
+/* line 5, ../sass/layouts/_explore.scss */
+.explore-page .container .searchbar-wrapper {
+  padding-bottom: 30px;
+}
+
+/* line 11, ../sass/layouts/_explore.scss */
 .flex-container {
   display: flex;
   margin: 0 -15px;
   list-style: none;
 }
 
-/* line 7, ../sass/layouts/_body.scss */
+/* line 17, ../sass/layouts/_explore.scss */
 .item-cards .item-cards-wrapper {
   position: relative;
   display: block;
@@ -468,7 +584,7 @@ a.item-card {
   margin-bottom: 30px;
   width: 33.3%;
 }
-/* line 14, ../sass/layouts/_body.scss */
+/* line 24, ../sass/layouts/_explore.scss */
 .item-cards .item-cards-wrapper:active {
   transform: translateY(4px);
 }

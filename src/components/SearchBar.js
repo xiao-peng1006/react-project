@@ -1,4 +1,5 @@
 import React, { Component} from 'react';
+import ReactDOM from 'react-dom';
 
 export default class SearchBar extends Component {
   constructor(props) {
@@ -37,12 +38,49 @@ export default class SearchBar extends Component {
     unClickedFilter.style.display = "none";
   }
 
+// Detect clicks outside dropdown filters to close all dropdown menus
+  // componentDidMount() {
+  //   document.addEventListener('click', this.handleClickOutside.bind(this), true);
+  // }
+  //
+  // componentWillUnmount() {
+  //   document.removeEventListener('click', this.handleClickOutside.bind(this), true);
+  // }
+  //
+  // handleClickOutside(e) {
+  //   while (!this.state.filterOneIsHidden || !this.state.filterTwoIsHidden) {
+  //     // While loop make sure function does not fire on every click
+  //     const domNode = ReactDOM.findDOMNode(this);
+  //     const filters = [ document.getElementById("filter-one").nextSibling, document.getElementById("filter-two").nextSibling ];
+  //     if ((!domNode || !domNode.contains(e.target))) {
+  //       this.setState(
+  //         {
+  //           filterOneIsHidden: true,
+  //           filterTwoIsHidden: true
+  //         }, () => {
+  //           filters.map((filter) => filter.style.display = "none");
+  //         }
+  //       );
+  //     }
+  //   }
+  // }
+
   handleCategoryChange(e) {
+    const target = document.getElementById("filter-one").nextSibling;
     this.props.onCategorySelect(e.target.innerHTML);
+    this.setState((prevState) => ({
+      filterOneIsHidden: !prevState.filterOneIsHidden
+    }));
+    target.style.display = "none";
   }
 
   handleDeviceChange(e) {
+    const target = document.getElementById("filter-two").nextSibling;
     this.props.onDeviceSelect(e.target.innerHTML);
+    this.setState((prevState) => ({
+      filterTwoIsHidden: !prevState.filterTwoIsHidden
+    }));
+    target.style.display = "none";
   }
 
   handleSearchInputChange(e){
@@ -78,10 +116,10 @@ export default class SearchBar extends Component {
             <a id = "filter-one" className = "dropdown-label" onClick = {this.handleDropDownChange}>Category</a>
             <ul className = "dropdown-child">
               <li onClick = {this.handleCategoryChange}>
-                <a>Photos</a>
+                <a>Photo</a>
               </li>
               <li onClick = {this.handleCategoryChange}>
-                <a>Videos</a>
+                <a>Video</a>
               </li>
             </ul>
           </li>

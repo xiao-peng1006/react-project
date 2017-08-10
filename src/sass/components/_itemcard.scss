@@ -60,6 +60,9 @@ a.item-card {
 .item-card-component .item-tags-list {
   position: absolute;
   margin: 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   height: 36px;
   bottom: 25px;
   left: 45px;
@@ -70,14 +73,16 @@ a.item-card {
   transition: opacity 0.15s ease 0.15s;
 }
 
-.item-card-component .tag-one {
-  text-align: left;
+.item-card-component {
+  .tag-one {
+    margin-right: 10px;
+    text-align: left;
+  }
 }
 
 .item-card-component .item-tags-list li.item-tag {
   position: relative;
   display: inline-block;
-  margin-right: 10px;
   padding: 0 12px;
   line-height: 32px;
   font-size: 13px;
@@ -87,12 +92,19 @@ a.item-card {
   border-radius: 80px;
   text-align: center;
   transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  z-index: 3;
   &:hover {
     border-color: $theme-color;
     cursor: pointer;
   }
+
+  span {
+    height: 32px;
+    line-height: 32px;
+    pointer-events: none; // Let click event through child element
+  }
 }
 
 .item-card-component .item-tags-list li:active {
-  transform: translateY(4px);
+  background-color: $theme-color;
 }

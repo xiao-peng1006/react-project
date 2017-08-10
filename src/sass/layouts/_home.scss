@@ -1,0 +1,13 @@
+.home-image {
+  width: 100%;
+  background-image: url("../images/home.jpg");
+  background-repeat: no-repeat;
+  background-size:contain;
+  background-position:center;
+
+  &-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+  }
+}

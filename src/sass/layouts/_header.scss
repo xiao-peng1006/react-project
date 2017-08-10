@@ -3,7 +3,7 @@
   display: block;
   height: 66px;
   width: 100%;
-  background-color: $SPACE-CADET;
+  background-color: $WHITE;
   border-bottom: 1px solid $border-color;
   z-index: 100;
 
@@ -41,7 +41,7 @@
         display: inline-block;
         text-decoration: none;
         color: #b2bbbd;
-        &:hover {color: $WHITE}
+        &:hover {color: $BLACK}
       }
     }
   }

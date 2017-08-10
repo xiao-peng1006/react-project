@@ -1,10 +1,14 @@
 import React, {Component} from "react";
-// import '../sass/components/_itemcard.css';
+import { Link } from 'react-router-dom';
 
 export default class ItemCard extends Component {
   constructor(props) {
     super(props);
+    this.handleTagClicked = this.handleTagClicked.bind(this);
+  }
 
+  handleTagClicked(e) {
+    this.props.onTagSelected(e.target.classList[1], e.target.children[0].innerHTML);
   }
 
   render() {
@@ -22,7 +26,7 @@ export default class ItemCard extends Component {
     return (
       <div id = "item-card" className = "item-card-component">
         <li className = "item-card-wrapper">
-          <a className = "item-card" href = "#">
+          <Link to = "/explore:id" className = "item-card" href = "#">
             <div className = "item-card-title">
               <span className = "duration">{isVideo ? (duration + ' min') : (this.props.item.count + ' Pic')}</span>
             </div>
@@ -30,17 +34,13 @@ export default class ItemCard extends Component {
             <p className = "item-card-description">
               {this.props.item.description}
             </p>
-          </a>
+          </Link>
           <ul className = "item-tags-list tags">
-            <li className = "item-tag tag-one">
-              <a href = "#">
-                <span>{category}</span>
-              </a>
+            <li className = "item-tag tag-one" onClick = {this.handleTagClicked}>
+              <span>{category}</span>
             </li>
-            <li className = "item-tag tag-two">
-              <a href = "#">
-                <span>{device}</span>
-              </a>
+            <li className = "item-tag tag-two" onClick = {this.handleTagClicked}>
+              <span>{device}</span>
             </li>
           </ul>
         </li>
