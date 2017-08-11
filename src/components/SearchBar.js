@@ -116,10 +116,10 @@ export default class SearchBar extends Component {
             <a id = "filter-one" className = "dropdown-label" onClick = {this.handleDropDownChange}>Category</a>
             <ul className = "dropdown-child">
               <li onClick = {this.handleCategoryChange}>
-                <a>Photo</a>
+                <span>Photo</span>
               </li>
               <li onClick = {this.handleCategoryChange}>
-                <a>Video</a>
+                <span>Video</span>
               </li>
             </ul>
           </li>
@@ -127,13 +127,13 @@ export default class SearchBar extends Component {
             <a id = "filter-two" className = "dropdown-label" onClick = {this.handleDropDownChange}>Device</a>
             <ul className = "dropdown-child">
               <li onClick = {this.handleDeviceChange}>
-                <a>Mobile</a>
+                <span>Mobile</span>
               </li>
               <li onClick = {this.handleDeviceChange}>
-                <a>Digital Camera</a>
+                <span>Digital Camera</span>
               </li>
               <li onClick = {this.handleDeviceChange}>
-                <a>Drone</a>
+                <span>Drone</span>
               </li>
             </ul>
           </li>

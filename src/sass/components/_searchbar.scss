@@ -75,10 +75,11 @@
 }
 
 .search-component .filter-dropdown .dropdown-child li {
-  padding: 0 20px;
-}
-
-.search-component .filter-dropdown .dropdown-child li:hover {
-  cursor: pointer;
-  color: #576366;
+  &:hover {
+    cursor: pointer;
+    color: #576366;
+  }
+  span {
+    padding: 0 20px;
+  }
 }

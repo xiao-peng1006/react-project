@@ -413,15 +413,14 @@ a.item-card {
   white-space: nowrap;
 }
 
-/* line 77, ../sass/components/_searchbar.scss */
-.search-component .filter-dropdown .dropdown-child li {
-  padding: 0 20px;
-}
-
-/* line 81, ../sass/components/_searchbar.scss */
+/* line 78, ../sass/components/_searchbar.scss */
 .search-component .filter-dropdown .dropdown-child li:hover {
   cursor: pointer;
   color: #576366;
+}
+/* line 82, ../sass/components/_searchbar.scss */
+.search-component .filter-dropdown .dropdown-child li span {
+  padding: 0 20px;
 }
 
 /* line 1, ../sass/layouts/_header.scss */
@@ -538,7 +537,7 @@ a.item-card {
 }
 /* line 44, ../sass/layouts/_about.scss */
 .about-page .about-page-description .page-description {
-  flex-grow: 2;
+  width: 70%;
 }
 /* line 47, ../sass/layouts/_about.scss */
 .about-page .about-page-description .page-description-wrapper {
@@ -547,7 +546,7 @@ a.item-card {
 }
 /* line 53, ../sass/layouts/_about.scss */
 .about-page .about-page-description .self-intro {
-  flex-grow: 1;
+  width: 30%;
   border-left: 1px solid #e2e5e8;
 }
 /* line 56, ../sass/layouts/_about.scss */
@@ -586,7 +585,33 @@ a.item-card {
 }
 /* line 24, ../sass/layouts/_explore.scss */
 .item-cards .item-cards-wrapper:active {
-  transform: translateY(4px);
+  transform: translateX(2px) translateY(4px);
+}
+
+/* line 29, ../sass/layouts/_explore.scss */
+.load-more {
+  position: relative;
+  padding: 10px;
+  width: 100%;
+  -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  background-color: #FFFFFF;
+}
+/* line 37, ../sass/layouts/_explore.scss */
+.load-more:hover {
+  cursor: pointer;
+}
+/* line 40, ../sass/layouts/_explore.scss */
+.load-more:active {
+  transform: translateX(1px) translateY(3px);
+}
+/* line 43, ../sass/layouts/_explore.scss */
+.load-more p {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  pointer-events: none;
 }
 
 /* line 2, ../sass/layouts/_footer.scss */

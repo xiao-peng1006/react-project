@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import ItemsAPI from '../api';
+
 export default class VideoContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      video: ""
+      video: ItemsAPI.getSelectedItem()
     }
   }
-
+  
   render() {
 
     return (
@@ -44,8 +46,8 @@ export default class VideoContent extends Component {
 
               <div className = "video-description-section">
                 <div className = "description flex-item">
-                  <h2>title</h2>
-                  <p>description</p>
+                  <h2>{this.state.video.title}</h2>
+                  <p>{this.state.video.description}</p>
                 </div>
                 <div className = "video-info flex-item">
                   <div className = "uploader-info">

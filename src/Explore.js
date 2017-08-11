@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ItemsAPI from './api'
+import ItemsAPI from './api';
 
 import SearchBar from './components/SearchBar';
 import ItemCard from './components/ItemCard';
@@ -14,6 +14,7 @@ export default class Explore extends Component {
     this.handleDeviceSelect = this.handleDeviceSelect.bind(this);
     this.handleItemSelected = this.handleItemSelected.bind(this);
     this.handleTagSelected = this.handleTagSelected.bind(this);
+
     this.state = {
       items: ItemsAPI.all(),
       dropdownActive: false,
@@ -23,7 +24,8 @@ export default class Explore extends Component {
       isDigitalCameraOnly: false,
       isDroneOnly: false,
 
-      selectedItem: ""
+      selectedItem: "",
+      loadCounter: 3
     }
   }
 
@@ -60,6 +62,7 @@ export default class Explore extends Component {
   handleItemSelected(item) {
     this.setState({selectedItem: item
     }, () => {console.log(this.state.selectedItem)});
+    ItemsAPI.updateSelectedItem(item);
   }
 
   handleTagSelected(filter, tag) {
@@ -70,17 +73,56 @@ export default class Explore extends Component {
     }
   }
 
+  handleLoadMoreClicked(e) {
+
+    if (this.state.loadCounter >= ItemsAPI.count()) {
+      e.target.children[0].innerHTML = "No more items ...";
+      console.log(e.target.style);
+      e.target.style.display = "none";
+    } else {
+      var restItemCounter = ItemsAPI.count() - this.state.loadCounter;
+      if (restItemCounter < 3) {
+        this.setState((prevState) => ({
+          loadCounter: prevState.loadCounter + restItemCounter
+        }))
+        e.target.children[0].innerHTML = "No more items ...";
+        this.forceUpdate();
+      } else {
+        this.setState((prevState) => ({
+          loadCounter: prevState.loadCounter + 3
+        }))
+        this.forceUpdate();
+      }
+    }
+  }
+
+  loadMoreItems(start, end) {
+    return (
+      <ul className = "item-cards flex-container">
+        {ItemsAPI.sortedByDate(start, end).map(function(item) {
+          return (
+            <div className = "item-cards-wrapper" key = {item.id} onClick = {() => this.handleItemSelected(item)}>
+              <ItemCard
+                item = {item}
+                onTagSelected = {this.handleTagSelected}
+              />
+            </div>
+            )
+          }.bind(this)
+        )}
+      </ul>
+    )
+  }
+
   render() {
-    var hotItems = (this.state.items.sort(function(a, b){
-      return parseFloat(b.hit) - parseFloat(a.hit);
-    })).slice(0,3);
-
-    var newestItems = (this.state.items.sort(function(a, b){
-      return new Date(b.upload_date) - new Date(a.upload_date);
-    })).slice(0,3);
-
-
-
+    var load = [];
+    for (var i = 0; i < this.state.loadCounter; i+=3) {
+      if ((i+3) <= this.state.loadCounter) {
+        load.push(this.loadMoreItems(i, i+3));
+      } else {
+        load.push(this.loadMoreItems(i, this.state.loadCounter));
+      }
+    }
     return (
       <div className = "explore-page">
         <div className = "container side-spacer">
@@ -94,11 +136,12 @@ export default class Explore extends Component {
 
           <div className = "item-section">
             <div className = "section-heading first">
-              <h2 className = "">New Posts</h2>
+              <h2 className = "">Hot Posts</h2>
               <p>This is the list of all videos, go check them out!</p>
             </div>
+
             <ul className = "item-cards flex-container">
-              {newestItems.map(function(item) {
+              {ItemsAPI.sortedByHits(3).map(function(item) {
                 return (
                   <div className = "item-cards-wrapper" key = {item.id} onClick = {() => this.handleItemSelected(item)}>
                     <ItemCard
@@ -112,22 +155,13 @@ export default class Explore extends Component {
             </ul>
 
             <div className = "section-heading">
-              <h2 className = "">Hot Posts</h2>
+              <h2 className = "">New Posts</h2>
               <p>This is the list of all videos, go check them out!</p>
             </div>
-            <ul className = "item-cards flex-container">
-              {hotItems.map(function(item) {
-                return (
-                  <div className = "item-cards-wrapper" key = {item.id} onClick = {() => this.handleItemSelected(item)}>
-                    <ItemCard
-                      item = {item}
-                      onTagSelected = {this.handleTagSelected}
-                    />
-                  </div>
-                  )
-                }.bind(this)
-              )}
-            </ul>
+            {load}
+            <div className = "load-more" onClick = {this.handleLoadMoreClicked.bind(this)}>
+              <p>Load More...</p>
+            </div>
           </div>
         </div>
       </div>
