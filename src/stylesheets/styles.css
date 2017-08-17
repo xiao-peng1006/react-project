@@ -22,6 +22,15 @@ a, Link {
 }
 
 /* line 20, ../sass/base/_base.scss */
+button {
+  outline: none;
+}
+/* line 22, ../sass/base/_base.scss */
+button:hover {
+  cursor: pointer;
+}
+
+/* line 27, ../sass/base/_base.scss */
 .container {
   position: relative;
   max-width: 1280px;
@@ -29,7 +38,7 @@ a, Link {
   padding: 0;
 }
 
-/* line 27, ../sass/base/_base.scss */
+/* line 34, ../sass/base/_base.scss */
 .container.side-spacer {
   position: relative;
   max-width: 1310px;
@@ -37,12 +46,12 @@ a, Link {
   padding: 0 30px;
 }
 
-/* line 34, ../sass/base/_base.scss */
+/* line 41, ../sass/base/_base.scss */
 .container::after {
   clear: both;
 }
 
-/* line 38, ../sass/base/_base.scss */
+/* line 45, ../sass/base/_base.scss */
 .container:before, .container:after {
   content: " ";
   display: table;
@@ -259,7 +268,14 @@ a.item-card {
   height: 100%;
   background: transparent;
 }
-/* line 81, ../sass/components/_videocontent.scss */
+/* line 77, ../sass/components/_videocontent.scss */
+#video-content .video-content-wrapper .video-player video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+/* line 87, ../sass/components/_videocontent.scss */
 #video-content .video-controls {
   position: absolute;
   bottom: 0px;
@@ -271,27 +287,39 @@ a.item-card {
   background-color: #86CDC5;
   z-index: 2;
 }
-/* line 93, ../sass/components/_videocontent.scss */
+/* line 99, ../sass/components/_videocontent.scss */
 #video-content .video-controls .video-controls-wrapper {
   display: inline-flex;
   padding: 0 30px;
   width: 100%;
 }
-/* line 98, ../sass/components/_videocontent.scss */
+/* line 104, ../sass/components/_videocontent.scss */
 #video-content .video-controls .video-controls-wrapper .control-item {
   flex-grow: 1;
   height: 60px;
   line-height: 60px;
 }
-/* line 103, ../sass/components/_videocontent.scss */
+/* line 109, ../sass/components/_videocontent.scss */
+#video-content .video-controls .video-controls-wrapper .control-item button {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: 0;
+}
+/* line 115, ../sass/components/_videocontent.scss */
+#video-content .video-controls .video-controls-wrapper .control-item button:hover {
+  background-color: #7ABBB4;
+}
+/* line 120, ../sass/components/_videocontent.scss */
 #video-content .video-controls .video-controls-wrapper .control-item.progress-bar {
   flex-grow: 10;
 }
-/* line 106, ../sass/components/_videocontent.scss */
+/* line 123, ../sass/components/_videocontent.scss */
 #video-content .video-controls .video-controls-wrapper .control-item.video-time, #video-content .video-controls .video-controls-wrapper .control-item.volumn-bar {
   flex-grow: 2;
 }
-/* line 114, ../sass/components/_videocontent.scss */
+/* line 131, ../sass/components/_videocontent.scss */
 #video-content .video-description-section {
   position: relative;
   display: inline-flex;
@@ -301,28 +329,46 @@ a.item-card {
   border-radius: 0 0 6px 6px;
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
 }
-/* line 124, ../sass/components/_videocontent.scss */
+/* line 141, ../sass/components/_videocontent.scss */
 #video-content .flex-item {
   position: relative;
   display: inline-block;
   padding: 60px 60px;
   flex-grow: 1;
 }
-/* line 131, ../sass/components/_videocontent.scss */
+/* line 148, ../sass/components/_videocontent.scss */
 #video-content .description.flex-item {
   flex-grow: 2;
 }
-/* line 135, ../sass/components/_videocontent.scss */
+/* line 152, ../sass/components/_videocontent.scss */
 #video-content .description.flex-item h2 {
   margin-bottom: 10px;
 }
-/* line 139, ../sass/components/_videocontent.scss */
+/* line 156, ../sass/components/_videocontent.scss */
 #video-content .video-info.flex-item {
   border-left: 1px solid #e2e5e8;
 }
-/* line 143, ../sass/components/_videocontent.scss */
-#video-content .map.video-location {
+/* line 158, ../sass/components/_videocontent.scss */
+#video-content .video-info.flex-item .uploader-info {
+  margin-bottom: 30px;
+}
+/* line 160, ../sass/components/_videocontent.scss */
+#video-content .video-info.flex-item .uploader-info p {
+  margin-bottom: 10px;
+  font-size: 11px;
+  color: #c0c6d1;
+}
+/* line 164, ../sass/components/_videocontent.scss */
+#video-content .video-info.flex-item .uploader-info p.uploader, #video-content .video-info.flex-item .uploader-info p.device {
+  font-size: 20px;
+  color: #000000;
+}
+/* line 172, ../sass/components/_videocontent.scss */
+#video-content .map.location-wrapper {
   position: relative;
+  padding-bottom: 100%;
+  width: 100%;
+  height: 0;
 }
 
 /* line 1, ../sass/components/_searchbar.scss */
@@ -399,6 +445,7 @@ a.item-card {
 .search-component .filter-dropdown .dropdown-child {
   position: absolute;
   display: none;
+  left: -20px;
   padding: 5px 0;
   text-align: left;
   background: #fff;
@@ -407,20 +454,47 @@ a.item-card {
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 0 rgba(0, 0, 0, 0.08);
 }
 
-/* line 72, ../sass/components/_searchbar.scss */
+/* line 73, ../sass/components/_searchbar.scss */
 .search-component .filter-dropdown .dropdown-child {
   padding: 10px 0px;
   white-space: nowrap;
 }
 
 /* line 78, ../sass/components/_searchbar.scss */
+.search-component .filter-dropdown .dropdown-child li {
+  padding: 0 20px;
+}
+/* line 80, ../sass/components/_searchbar.scss */
 .search-component .filter-dropdown .dropdown-child li:hover {
   cursor: pointer;
   color: #576366;
 }
-/* line 82, ../sass/components/_searchbar.scss */
+/* line 84, ../sass/components/_searchbar.scss */
+.search-component .filter-dropdown .dropdown-child li .check-mark {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  pointer-events: none;
+}
+/* line 89, ../sass/components/_searchbar.scss */
+.search-component .filter-dropdown .dropdown-child li .check-mark .selected {
+  display: none;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+/* line 94, ../sass/components/_searchbar.scss */
+.search-component .filter-dropdown .dropdown-child li .check-mark .selected.all {
+  display: block;
+}
+/* line 97, ../sass/components/_searchbar.scss */
+.search-component .filter-dropdown .dropdown-child li .check-mark .selected p {
+  pointer-events: none;
+}
+/* line 103, ../sass/components/_searchbar.scss */
 .search-component .filter-dropdown .dropdown-child li span {
-  padding: 0 20px;
+  display: inline-block;
+  padding-left: 5px;
 }
 
 /* line 1, ../sass/layouts/_header.scss */
@@ -479,7 +553,6 @@ a.item-card {
 /* line 1, ../sass/layouts/_home.scss */
 .home-image {
   width: 100%;
-  background-image: url("../images/home.jpg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -489,6 +562,11 @@ a.item-card {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
+}
+
+/* line 15, ../sass/layouts/_home.scss */
+.fillWidth {
+  width: 100%;
 }
 
 /* line 1, ../sass/layouts/_about.scss */

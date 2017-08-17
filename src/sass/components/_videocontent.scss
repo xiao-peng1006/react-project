@@ -74,6 +74,12 @@
           height: 100%;
           background: transparent;
         }
+        video {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          z-index: 2;
+        }
       }
   }
 
@@ -99,6 +105,17 @@
       flex-grow: 1;
       height: 60px;
       line-height: 60px;
+
+      button {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        border: 0;
+        &:hover {
+          background-color: #7ABBB4;
+        }
+      }
 
       &.progress-bar {
         flex-grow: 10;
@@ -138,10 +155,24 @@
 
   .video-info.flex-item {
     border-left: 1px solid #e2e5e8;
+    .uploader-info {
+      margin-bottom: 30px;
+      p {
+        margin-bottom: 10px;
+        font-size: 11px;
+        color: #c0c6d1;
+        &.uploader, &.device {
+          font-size: 20px;
+          color: #000000;
+        }
+      }
+    }
   }
 
-  .map.video-location {
+  .map.location-wrapper {
     position: relative;
-
+    padding-bottom: 100%;
+    width: 100%;
+    height: 0;
   }
 }

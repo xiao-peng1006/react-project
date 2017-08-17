@@ -29,24 +29,65 @@ export default class Explore extends Component {
     }
   }
 
+  checkFilter() {
+    if (this.state.isPhotoOnly) {
+      if (this.state.isMobileOnly) { return "11"} else if (this.state.isDigitalCameraOnly) { return "12" } else if (this.state.isDroneOnly) { return "13" } else { return "10" }
+    } else if (this.state.isVideoOnly) {
+      if (this.state.isMobileOnly) { return "21" } else if (this.state.isDigitalCameraOnly) { return "22" } else if (this.state.isDroneOnly) { return "23" } else { return "20" }
+    } else {
+      if (this.state.isMobileOnly) { return "01"} else if (this.state.isDigitalCameraOnly) { return "02" } else if (this.state.isDroneOnly) {return "03" } else { return "00"}
+    }
+  }
+
   categoryChange(category) {
-    if (category.toLowerCase() === 'photo') {
-      this.setState({isPhotoOnly: true, isVideoOnly: false}, () => {console.log(category)});
-    } else if (category.toLowerCase() === 'video') {
-      this.setState({isPhotoOnly: false, isVideoOnly: true}, () => {console.log(category)});
+    var filter;
+    switch (category.toLowerCase()) {
+      case "photo":
+        this.setState({ isPhotoOnly: !this.state.isPhotoOnly, isVideoOnly: false}, () => {
+          filter = this.checkFilter();
+          this.setState({items: ItemsAPI.filter(filter)});
+        });
+        break;
+      case "video":
+        this.setState({ isVideoOnly: !this.state.isVideoOnly, isPhotoOnly: false}, () => {
+          filter = this.checkFilter();
+          this.setState({items: ItemsAPI.filter(filter)});
+        });
+        break;
+      default:
+        this.setState({ isVideoOnly: false, isPhotoOnly: false}, () => {
+          filter = this.checkFilter();
+          this.setState({items: ItemsAPI.filter(filter)});
+        });
     }
   }
 
   deviceChange(device) {
-    if (device.toLowerCase() === 'mobile') {
-      this.setState({isMobileOnly: true, isDigitalCameraOnly: false, isDroneOnly: false});
-      console.log("Mobile Selected")
-    } else if (device.toLowerCase() === 'drone') {
-      this.setState({isMobileOnly: false, isDigitalCameraOnly: false, isDroneOnly: true});
-      console.log("Drone Selected")
-    } else {
-      this.setState({isMobileOnly: false, isDigitalCameraOnly: true, isDroneOnly: false});
-      console.log("Digital Camera Selected")
+    var filter;
+    switch (device.toLowerCase()) {
+      case "mobile":
+        this.setState({isMobileOnly: !this.state.isMobileOnly, isDigitalCameraOnly: false, isDroneOnly: false}, () => {
+          filter = this.checkFilter();
+          this.setState({items: ItemsAPI.filter(filter)});
+        });
+        break;
+      case "digital camera":
+        this.setState({isMobileOnly: false, isDigitalCameraOnly: !this.state.isDigitalCameraOnly, isDroneOnly: false}, () => {
+          filter = this.checkFilter();
+          this.setState({items: ItemsAPI.filter(filter)});
+        });
+        break;
+      case "drone":
+        this.setState({isMobileOnly: false, isDigitalCameraOnly: false, isDroneOnly: !this.state.isDroneOnly}, () => {
+          filter = this.checkFilter();
+          this.setState({items: ItemsAPI.filter(filter)});
+        });
+        break;
+      default:
+        this.setState({isMobileOnly: false, isDigitalCameraOnly: false, isDroneOnly: false}, () => {
+          filter = this.checkFilter();
+          this.setState({items: ItemsAPI.filter(filter)});
+        });
     }
   }
 
@@ -63,6 +104,7 @@ export default class Explore extends Component {
     this.setState({selectedItem: item
     }, () => {console.log(this.state.selectedItem)});
     ItemsAPI.updateSelectedItem(item);
+    // ItemsAPI.itemHit(item);
   }
 
   handleTagSelected(filter, tag) {
@@ -74,32 +116,43 @@ export default class Explore extends Component {
   }
 
   handleLoadMoreClicked(e) {
-
-    if (this.state.loadCounter >= ItemsAPI.count()) {
-      e.target.children[0].innerHTML = "No more items ...";
-      console.log(e.target.style);
+    var restItemCounter = ItemsAPI.count() - this.state.loadCounter;
+    if (restItemCounter < 3) {
+      this.setState((prevState) => ({
+        loadCounter: prevState.loadCounter + restItemCounter
+      }))
       e.target.style.display = "none";
+      this.forceUpdate();
     } else {
-      var restItemCounter = ItemsAPI.count() - this.state.loadCounter;
-      if (restItemCounter < 3) {
-        this.setState((prevState) => ({
-          loadCounter: prevState.loadCounter + restItemCounter
-        }))
-        e.target.children[0].innerHTML = "No more items ...";
-        this.forceUpdate();
-      } else {
-        this.setState((prevState) => ({
-          loadCounter: prevState.loadCounter + 3
-        }))
-        this.forceUpdate();
-      }
+      this.setState((prevState) => ({
+        loadCounter: prevState.loadCounter + 3
+      }))
+      this.forceUpdate();
+    }
+  }
+
+  sortedByHits(count) {
+    return (this.state.items.sort(function(a, b){
+      return parseFloat(b.hit) - parseFloat(a.hit);
+    })).slice(0,count)
+  }
+
+  sortedByDate() {
+    if (arguments.length === 1) {
+      return (this.state.items.sort(function(a, b){
+        return new Date(b.upload_date) - new Date(a.upload_date);
+      })).slice(0,arguments[0])
+    } else if (arguments.length === 2) {
+      return (this.state.items.sort(function(a, b){
+        return new Date(b.upload_date) - new Date(a.upload_date);
+      })).slice(arguments[0], arguments[1])
     }
   }
 
   loadMoreItems(start, end) {
     return (
       <ul className = "item-cards flex-container">
-        {ItemsAPI.sortedByDate(start, end).map(function(item) {
+        {this.sortedByDate(start, end).map(function(item) {
           return (
             <div className = "item-cards-wrapper" key = {item.id} onClick = {() => this.handleItemSelected(item)}>
               <ItemCard
@@ -131,6 +184,11 @@ export default class Explore extends Component {
               dropdownActive = {this.state.dropdownActive}
               onCategorySelect = {this.handleCategorySelect}
               onDeviceSelect = {this.handleDeviceSelect}
+              isPhotoOnly = {this.state.isPhotoOnly}
+              isVideoOnly = {this.state.isVideoOnly}
+              isMobileOnly = {this.state.isMobileOnly}
+              isDigitalCameraOnly = {this.state.isDigitalCameraOnly}
+              isDroneOnly = {this.state.isDroneOnly}
             />
           </div>
 
@@ -141,7 +199,7 @@ export default class Explore extends Component {
             </div>
 
             <ul className = "item-cards flex-container">
-              {ItemsAPI.sortedByHits(3).map(function(item) {
+              {this.sortedByHits(3).map(function(item) {
                 return (
                   <div className = "item-cards-wrapper" key = {item.id} onClick = {() => this.handleItemSelected(item)}>
                     <ItemCard

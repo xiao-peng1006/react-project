@@ -17,6 +17,13 @@ a, Link {
   text-decoration: none;
 }
 
+button {
+  outline: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .container {
   position: relative;
   max-width: 1280px;
