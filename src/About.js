@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 
 export default class About extends Component {
-  constructor(props) {
-    super(props);
-
-  }
 
   render() {
 
@@ -16,7 +12,7 @@ export default class About extends Component {
             <div className = "intro-image">
               <div className = "intro-image-mask">
                 <div className = "intro-image-window">
-                  <img src = "./images/home.jpg"></img>
+                  <img src = "./images/home.jpg" alt = ""></img>
                 </div>
               </div>
             </div>

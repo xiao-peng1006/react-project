@@ -64,14 +64,18 @@ a.item-card {
   color: #000000;
   cursor: pointer;
 }
+/* line 6, ../sass/components/_itemcard.scss */
+a.item-card > * {
+  pointer-events: none;
+}
 
-/* line 8, ../sass/components/_itemcard.scss */
+/* line 11, ../sass/components/_itemcard.scss */
 .item-card:before, .item-card:after {
   content: " ";
   display: table;
 }
 
-/* line 13, ../sass/components/_itemcard.scss */
+/* line 16, ../sass/components/_itemcard.scss */
 .item-card {
   position: relative;
   display: block;
@@ -82,7 +86,7 @@ a.item-card {
   background-color: #fff;
 }
 
-/* line 23, ../sass/components/_itemcard.scss */
+/* line 26, ../sass/components/_itemcard.scss */
 .item-card-component .item-card-title {
   position: absolute;
   top: 0;
@@ -95,7 +99,7 @@ a.item-card {
   border-radius: 4px 4px 0 0;
   background-color: #86CDC5;
 }
-/* line 35, ../sass/components/_itemcard.scss */
+/* line 38, ../sass/components/_itemcard.scss */
 .item-card-component .item-card-title .duration {
   position: absolute;
   padding-left: 10px;
@@ -105,7 +109,7 @@ a.item-card {
   color: #fff;
 }
 
-/* line 45, ../sass/components/_itemcard.scss */
+/* line 48, ../sass/components/_itemcard.scss */
 .item-card-component .item-title {
   margin: 0 0 20px;
   line-height: 24px;
@@ -114,7 +118,7 @@ a.item-card {
   overflow: hidden;
 }
 
-/* line 53, ../sass/components/_itemcard.scss */
+/* line 56, ../sass/components/_itemcard.scss */
 .item-card-component .item-card-description {
   position: relative;
   margin: 0;
@@ -122,7 +126,7 @@ a.item-card {
   overflow: hidden;
 }
 
-/* line 60, ../sass/components/_itemcard.scss */
+/* line 63, ../sass/components/_itemcard.scss */
 .item-card-component .item-tags-list {
   position: absolute;
   margin: 0;
@@ -139,13 +143,13 @@ a.item-card {
   transition: opacity 0.15s ease 0.15s;
 }
 
-/* line 77, ../sass/components/_itemcard.scss */
+/* line 80, ../sass/components/_itemcard.scss */
 .item-card-component .tag-one {
   margin-right: 10px;
   text-align: left;
 }
 
-/* line 83, ../sass/components/_itemcard.scss */
+/* line 86, ../sass/components/_itemcard.scss */
 .item-card-component .item-tags-list li.item-tag {
   position: relative;
   display: inline-block;
@@ -158,21 +162,22 @@ a.item-card {
   border-radius: 80px;
   text-align: center;
   transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  pointer-events: auto;
   z-index: 3;
 }
-/* line 96, ../sass/components/_itemcard.scss */
+/* line 100, ../sass/components/_itemcard.scss */
 .item-card-component .item-tags-list li.item-tag:hover {
   border-color: #86CDC5;
   cursor: pointer;
 }
-/* line 101, ../sass/components/_itemcard.scss */
+/* line 105, ../sass/components/_itemcard.scss */
 .item-card-component .item-tags-list li.item-tag span {
   height: 32px;
   line-height: 32px;
   pointer-events: none;
 }
 
-/* line 108, ../sass/components/_itemcard.scss */
+/* line 112, ../sass/components/_itemcard.scss */
 .item-card-component .item-tags-list li:active {
   background-color: #86CDC5;
 }
@@ -266,16 +271,15 @@ a.item-card {
   left: 0;
   width: 100%;
   height: 100%;
-  background: transparent;
+  background-color: #000000;
 }
 /* line 77, ../sass/components/_videocontent.scss */
 #video-content .video-content-wrapper .video-player video {
   position: relative;
   width: 100%;
   height: 100%;
-  z-index: 2;
 }
-/* line 87, ../sass/components/_videocontent.scss */
+/* line 86, ../sass/components/_videocontent.scss */
 #video-content .video-controls {
   position: absolute;
   bottom: 0px;
@@ -287,19 +291,19 @@ a.item-card {
   background-color: #86CDC5;
   z-index: 2;
 }
-/* line 99, ../sass/components/_videocontent.scss */
+/* line 98, ../sass/components/_videocontent.scss */
 #video-content .video-controls .video-controls-wrapper {
   display: inline-flex;
   padding: 0 30px;
   width: 100%;
 }
-/* line 104, ../sass/components/_videocontent.scss */
+/* line 103, ../sass/components/_videocontent.scss */
 #video-content .video-controls .video-controls-wrapper .control-item {
   flex-grow: 1;
   height: 60px;
   line-height: 60px;
 }
-/* line 109, ../sass/components/_videocontent.scss */
+/* line 108, ../sass/components/_videocontent.scss */
 #video-content .video-controls .video-controls-wrapper .control-item button {
   position: relative;
   width: 100%;
@@ -307,16 +311,17 @@ a.item-card {
   background-color: transparent;
   border: 0;
 }
-/* line 115, ../sass/components/_videocontent.scss */
+/* line 114, ../sass/components/_videocontent.scss */
 #video-content .video-controls .video-controls-wrapper .control-item button:hover {
   background-color: #7ABBB4;
 }
-/* line 120, ../sass/components/_videocontent.scss */
+/* line 119, ../sass/components/_videocontent.scss */
 #video-content .video-controls .video-controls-wrapper .control-item.progress-bar {
   flex-grow: 10;
 }
-/* line 123, ../sass/components/_videocontent.scss */
+/* line 122, ../sass/components/_videocontent.scss */
 #video-content .video-controls .video-controls-wrapper .control-item.video-time, #video-content .video-controls .video-controls-wrapper .control-item.volumn-bar {
+  padding: 0 20px;
   flex-grow: 2;
 }
 /* line 131, ../sass/components/_videocontent.scss */
@@ -507,13 +512,18 @@ a.item-card {
   border-bottom: 1px solid #E2E5E8;
   z-index: 100;
 }
-/* line 10, ../sass/layouts/_header.scss */
+/* line 9, ../sass/layouts/_header.scss */
+#header.at-home-page {
+  background-color: rgba(0, 0, 0, 0.7);
+  border: none;
+}
+/* line 14, ../sass/layouts/_header.scss */
 #header .navbar-font-default {
   font-family: sans-serif;
   font-size: 18px;
   font-weight: 500;
 }
-/* line 18, ../sass/layouts/_header.scss */
+/* line 22, ../sass/layouts/_header.scss */
 #header ul {
   position: relative;
   margin: 0 auto;
@@ -521,13 +531,13 @@ a.item-card {
   list-style: none;
   text-align: right;
 }
-/* line 25, ../sass/layouts/_header.scss */
+/* line 29, ../sass/layouts/_header.scss */
 #header ul li {
   display: inline-block;
   line-height: 66px;
   margin-left: 30px;
 }
-/* line 30, ../sass/layouts/_header.scss */
+/* line 34, ../sass/layouts/_header.scss */
 #header ul li.navbar-logo {
   float: left;
   margin-right: 40px;
@@ -535,17 +545,17 @@ a.item-card {
   line-height: 66px;
   margin-left: 30px;
 }
-/* line 38, ../sass/layouts/_header.scss */
+/* line 42, ../sass/layouts/_header.scss */
 #header ul li.last-item {
   margin-right: 30px;
 }
-/* line 40, ../sass/layouts/_header.scss */
+/* line 44, ../sass/layouts/_header.scss */
 #header ul li a {
   display: inline-block;
   text-decoration: none;
   color: #b2bbbd;
 }
-/* line 44, ../sass/layouts/_header.scss */
+/* line 48, ../sass/layouts/_header.scss */
 #header ul li a:hover {
   color: #000000;
 }
@@ -662,11 +672,15 @@ a.item-card {
   width: 33.3%;
 }
 /* line 24, ../sass/layouts/_explore.scss */
+.item-cards .item-cards-wrapper:hover {
+  cursor: pointer;
+}
+/* line 27, ../sass/layouts/_explore.scss */
 .item-cards .item-cards-wrapper:active {
   transform: translateX(2px) translateY(4px);
 }
 
-/* line 29, ../sass/layouts/_explore.scss */
+/* line 32, ../sass/layouts/_explore.scss */
 .load-more {
   position: relative;
   padding: 10px;
@@ -676,15 +690,15 @@ a.item-card {
   border-radius: 6px;
   background-color: #FFFFFF;
 }
-/* line 37, ../sass/layouts/_explore.scss */
+/* line 40, ../sass/layouts/_explore.scss */
 .load-more:hover {
   cursor: pointer;
 }
-/* line 40, ../sass/layouts/_explore.scss */
+/* line 43, ../sass/layouts/_explore.scss */
 .load-more:active {
   transform: translateX(1px) translateY(3px);
 }
-/* line 43, ../sass/layouts/_explore.scss */
+/* line 46, ../sass/layouts/_explore.scss */
 .load-more p {
   height: 30px;
   line-height: 30px;

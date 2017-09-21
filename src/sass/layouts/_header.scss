@@ -6,6 +6,10 @@
   background-color: $WHITE;
   border-bottom: 1px solid $border-color;
   z-index: 100;
+  &.at-home-page {
+    background-color: rgba(0,0,0,0.7);
+    border: none;
+  }
 
   .navbar-font-default {
     font: {

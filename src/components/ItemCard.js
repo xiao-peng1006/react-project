@@ -8,25 +8,25 @@ export default class ItemCard extends Component {
   }
 
   handleTagClicked(e) {
-    this.props.onTagSelected(e.target.classList[1], e.target.children[0].innerHTML);
+    this.props.onTagSelected(e, e.target.classList[1], e.target.children[0].innerHTML);
   }
 
   render() {
     var isVideo, duration;
     if (this.props.item.category === 'video') {
       isVideo = true;
-      duration = parseInt((this.props.item.duration.split(":"))[0])*60 + parseInt((this.props.item.duration.split(":"))[1]);
+      duration = parseInt((this.props.item.duration.split(":"))[0], 10)*60 + parseInt((this.props.item.duration.split(":"))[1], 10);
     } else {
       isVideo = false;
     };
 
     const category = this.props.item.category[0].toUpperCase() + this.props.item.category.slice(1);
     const device = this.props.item.device[0].toUpperCase() + this.props.item.device.slice(1);
-
+    const pathName = this.props.item.id;
     return (
       <div id = "item-card" className = "item-card-component">
         <li className = "item-card-wrapper">
-          <Link to = "/explore:id" className = "item-card" href = "#">
+          <Link to = {"/explore" + pathName} className = "item-card" href = "#">
             <div className = "item-card-title">
               <span className = "duration">{isVideo ? (duration + ' min') : (this.props.item.count + ' Pic')}</span>
             </div>

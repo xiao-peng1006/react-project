@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { fetchItems } from './actions/index';
+import store from "./store"
 
 import './App.css';
 
@@ -16,8 +18,17 @@ export default class App extends Component {
     super(props)
     this.handleBackToTopClicked = this.handleBackToTopClicked.bind(this);
     this.state = {
-
     }
+  }
+
+  componentWillMount() {
+    fetch('http://localhost:3030').then(response => {
+      return response.json(); })
+      .then(data => {
+        store.dispatch(fetchItems(data));
+        console.log(data)
+      });
+
   }
 
   handleBackToTopClicked() {
@@ -27,28 +38,27 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Header />
-        <div className = "header-spacer"></div>
-
-        <Switch>
-          <Route exact path = '/' component = {Home}/>
-          <Route path = '/about' component = {About}/>
-          <Route path = '/explore' component = {Explore}/>
-          <Route path = '/community' component = {Home}/>
-          <Route path = '/explore:id' component = {VideoContent}/>
-        </Switch>
-
-        <div className = "back-to-top">
-          <button className = "back-to-top-button button" onClick = {this.handleBackToTopClicked}>Top</button>
-        </div>
-
-        <footer className = "footer p-tb-6-md">
-          <div className = "container">
-            <Footer />
+      <BrowserRouter>
+        <div className="App">
+          <Header />
+          <div className = "header-spacer"></div>
+          <Switch>
+            <Route exact path = '/' component = {Home}/>
+            <Route path = '/about' component = {About}/>
+            <Route path = '/explore' component = {Explore}/>
+            <Route path = '/upload' component = {Home}/>
+            <Route path = '/explore:_id' component = {VideoContent}/>
+          </Switch>
+          <div className = "back-to-top">
+            <button className = "back-to-top-button button" onClick = {this.handleBackToTopClicked}>Top</button>
           </div>
-        </footer>
-      </div>
+          <footer className = "footer p-tb-6-md">
+            <div className = "container">
+              <Footer />
+            </div>
+          </footer>
+        </div>
+      </BrowserRouter>
     )
   }
 }

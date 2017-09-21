@@ -2,10 +2,6 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {isLoggedIn: true};
-  }
 
   render() {
     return (
@@ -16,7 +12,7 @@ class Header extends Component {
                 <li className = "navbar-logo"><Link to = "/">Home</Link></li>
                 <li><Link to = "/about">About</Link></li>
                 <li><Link to = "/explore">Explore</Link></li>
-                <li className = "last-item"><Link to = "/community">Community</Link></li>
+                <li className = "last-item"><Link to = "/upload">Upload</Link></li>
               </ul>
             </div>
           </div>

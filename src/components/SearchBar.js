@@ -136,7 +136,7 @@ export default class SearchBar extends Component {
         <div className = "search-container">
           <form className = "search-form">
             <div className = "search-input">
-              <label for = "search">
+              <label htmlFor = "search">
 
               </label>
               <input

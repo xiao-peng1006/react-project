@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import store from '../store';
 
+import { DefaultPlayer as Video } from 'react-html5video';
+import 'react-html5video/dist/styles.css';
 
-import ItemsAPI from '../api';
+var video = document.getElementById("my-video");
 
 export class VideoContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      video: ItemsAPI.getSelectedItem()
+      video: store.getState().selectedItem.item,
     }
   }
 
   handlePlayPauseClick(e) {
-    var video = document.getElementById("video");
-    if(video.paused){
+    video = document.getElementById("my-video");
+    if (video.paused){
   	   video.play();
   		 e.target.style.title = "Pause";
   	} else {
@@ -26,8 +29,7 @@ export class VideoContent extends Component {
   }
 
   handleMuteClick(e) {
-    var video  = document.getElementById("video");
-    if(video.muted){
+    if (video.muted){
   	   video.muted = false;
   		 e.target.style.title = "Play";
   	} else {
@@ -37,7 +39,6 @@ export class VideoContent extends Component {
   }
 
   handleFullScreenClick(e) {
-    var video = document.getElementById("video")
     if (video.requestFullscreen) {
       video.requestFullscreen();
     } else if (video.mozRequestFullScreen) {
@@ -51,7 +52,7 @@ export class VideoContent extends Component {
     var res = "";
     if (str.split(" ").length !== 1) {
       for (var i = 0; i < str.split(" ").length; i++) {
-        res = res + (str.split(" "))[i].charAt(0).toUpperCase() + (str.split(" "))[i].slice(1);
+        res = res + " " + (str.split(" "))[i].charAt(0).toUpperCase() + (str.split(" "))[i].slice(1);
       }
     } else {
       res = str.charAt(0).toUpperCase() + str.slice(1);
@@ -60,7 +61,7 @@ export class VideoContent extends Component {
   }
 
   render() {
-
+    const url = "http://localhost:3030/video/" + this.state.video._id;
     return (
       <div className = "video-page">
         <div className = "container side-spacer">
@@ -75,21 +76,33 @@ export class VideoContent extends Component {
               <div id = "video-player" className = "video-player">
                 <div className = "video-player-wrapper">
                   <div className = "video-player-window">
-                    <video id = "video" onClick = {this.handlePlayPauseClick.bind(this)} onDoubleClick = {this.handleFullScreenClick.bind(this)}>
-                      <source preload src = {this.state.video.url} type = "video/mp4"></source>
-                    </video>
+
+                    <Video loop muted preload
+                        controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
+                        // poster="http://sourceposter.jpg"
+                        onCanPlayThrough={() => {
+                            // Do stuff
+                        }}>
+                        <source src = {url} type="video/webm" />
+                        <track label="English" kind="subtitles" srcLang="en" src="http://source.vtt" default />
+                    </Video>
+                    {/* <video id = "my-video" className = "nopadding" ref = "player" preload loop>
+                      <source src = {this.state.video.url} type = "video/mp4"></source>
+                    </video> */}
                   </div>
                 </div>
                 <div className = "video-controls">
                   <div className = "video-controls-wrapper">
-                    <div className = "control-item playpause-button">
-                      <button id = "playpausebtn" type = "button" title = "Play" onClick = {this.handlePlayPauseClick.bind(this)}></button>
+                    {/* <div className = "control-item playpause-button">
+                      <button id = "playpausebtn" type = "button" title = "Play" onClick = {this.handlePlayPauseClick.bind(this)}>
+
+                      </button>
                     </div>
                     <div className = "control-item progress-bar">
-                      <span></span>
+
                     </div>
                     <div className = "control-item video-time">
-                      <span id = "video-time"></span>
+                      <span id = "current-time-text"></span> / {duration} <span id = "duration-time-text"></span>
                     </div>
                     <div className = "control-item mute-button">
                       <button type = "button" title = "Mute" onClick = {this.handleMuteClick.bind(this)}></button>
@@ -98,7 +111,7 @@ export class VideoContent extends Component {
                     <div className = "control-item volumn-bar"></div>
                     <div className = "control-item fullscreen-button">
                       <button type = "button" title = "Full Screen" onClick = {this.handleFullScreenClick.bind(this)}></button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -113,15 +126,15 @@ export class VideoContent extends Component {
                     <p>Uploaded by:</p>
                     <p className = "uploader">{this.state.video.uploader}</p>
                     <p>Created using:</p>
-                    <p className = "device">{this.state.video.device}</p>
+                    <p className = "device">{this.capitalize(String(this.state.video.device))}</p>
                   </div>
                   <div id = "map" className = "map location-wrapper">
                     <div className = "location-box">
                       <Map
                         google = {this.props.google}
-                        onReady={this.fetchPlaces}
+                        onReady = {this.fetchPlaces}
+                        initialCenter = {this.state.video.coordinates}
                         zoom = {14}>
-
                         <Marker onClick = {this.onMarkerClick}
                                 name = {'Current location'} />
 

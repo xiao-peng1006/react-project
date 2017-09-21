@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import ItemsAPI from './api';
+import store from "./store";
+import { fetchSelectedItem } from './actions/index';
 
 import SearchBar from './components/SearchBar';
 import ItemCard from './components/ItemCard';
-
-
 
 export default class Explore extends Component {
   constructor(props) {
@@ -16,7 +16,9 @@ export default class Explore extends Component {
     this.handleTagSelected = this.handleTagSelected.bind(this);
 
     this.state = {
-      items: ItemsAPI.all(),
+      // items: ItemsAPI.all(),
+      all: store.getState().items.all,
+      items: store.getState().items.all,
       dropdownActive: false,
       isPhotoOnly: false,
       isVideoOnly: false,
@@ -45,19 +47,19 @@ export default class Explore extends Component {
       case "photo":
         this.setState({ isPhotoOnly: !this.state.isPhotoOnly, isVideoOnly: false}, () => {
           filter = this.checkFilter();
-          this.setState({items: ItemsAPI.filter(filter)});
+          this.setState({items: ItemsAPI.filter(this.state.all, filter)});
         });
         break;
       case "video":
         this.setState({ isVideoOnly: !this.state.isVideoOnly, isPhotoOnly: false}, () => {
           filter = this.checkFilter();
-          this.setState({items: ItemsAPI.filter(filter)});
+          this.setState({items: ItemsAPI.filter(this.state.all, filter)});
         });
         break;
       default:
         this.setState({ isVideoOnly: false, isPhotoOnly: false}, () => {
           filter = this.checkFilter();
-          this.setState({items: ItemsAPI.filter(filter)});
+          this.setState({items: ItemsAPI.filter(this.state.all, filter)});
         });
     }
   }
@@ -68,25 +70,25 @@ export default class Explore extends Component {
       case "mobile":
         this.setState({isMobileOnly: !this.state.isMobileOnly, isDigitalCameraOnly: false, isDroneOnly: false}, () => {
           filter = this.checkFilter();
-          this.setState({items: ItemsAPI.filter(filter)});
+          this.setState({items: ItemsAPI.filter(this.state.all, filter)});
         });
         break;
       case "digital camera":
         this.setState({isMobileOnly: false, isDigitalCameraOnly: !this.state.isDigitalCameraOnly, isDroneOnly: false}, () => {
           filter = this.checkFilter();
-          this.setState({items: ItemsAPI.filter(filter)});
+          this.setState({items: ItemsAPI.filter(this.state.all, filter)});
         });
         break;
       case "drone":
         this.setState({isMobileOnly: false, isDigitalCameraOnly: false, isDroneOnly: !this.state.isDroneOnly}, () => {
           filter = this.checkFilter();
-          this.setState({items: ItemsAPI.filter(filter)});
+          this.setState({items: ItemsAPI.filter(this.state.all, filter)});
         });
         break;
       default:
         this.setState({isMobileOnly: false, isDigitalCameraOnly: false, isDroneOnly: false}, () => {
           filter = this.checkFilter();
-          this.setState({items: ItemsAPI.filter(filter)});
+          this.setState({items: ItemsAPI.filter(this.state.all, filter)});
         });
     }
   }
@@ -100,14 +102,13 @@ export default class Explore extends Component {
     this.deviceChange(device);
   }
 
-  handleItemSelected(item) {
-    this.setState({selectedItem: item
-    }, () => {console.log(this.state.selectedItem)});
-    ItemsAPI.updateSelectedItem(item);
-    // ItemsAPI.itemHit(item);
+  handleItemSelected(e, item) {
+    this.setState({selectedItem: item});
+    console.log(e.target.tagName)
+    store.dispatch(fetchSelectedItem(item));
   }
 
-  handleTagSelected(filter, tag) {
+  handleTagSelected(e, filter, tag) {
     if (filter === "tag-one") {
       this.categoryChange(tag);
     } else {
@@ -116,7 +117,7 @@ export default class Explore extends Component {
   }
 
   handleLoadMoreClicked(e) {
-    var restItemCounter = ItemsAPI.count() - this.state.loadCounter;
+    var restItemCounter = ItemsAPI.count(this.state.items) - this.state.loadCounter;
     if (restItemCounter < 3) {
       this.setState((prevState) => ({
         loadCounter: prevState.loadCounter + restItemCounter
@@ -154,7 +155,7 @@ export default class Explore extends Component {
       <ul className = "item-cards flex-container">
         {this.sortedByDate(start, end).map(function(item) {
           return (
-            <div className = "item-cards-wrapper" key = {item.id} onClick = {() => this.handleItemSelected(item)}>
+            <div className = "item-cards-wrapper" key = {item.id} onClick = {(e) => this.handleItemSelected(e, item)}>
               <ItemCard
                 item = {item}
                 onTagSelected = {this.handleTagSelected}
@@ -192,7 +193,7 @@ export default class Explore extends Component {
             />
           </div>
 
-          <div className = "item-section">
+          <div className = "item-section" >
             <div className = "section-heading first">
               <h2 className = "">Hot Posts</h2>
               <p>This is the list of all videos, go check them out!</p>
@@ -201,7 +202,7 @@ export default class Explore extends Component {
             <ul className = "item-cards flex-container">
               {this.sortedByHits(3).map(function(item) {
                 return (
-                  <div className = "item-cards-wrapper" key = {item.id} onClick = {() => this.handleItemSelected(item)}>
+                  <div className = "item-cards-wrapper" key = {item.id} onClick = {(e) => this.handleItemSelected(e, item)}>
                     <ItemCard
                       item = {item}
                       onTagSelected = {this.handleTagSelected}
@@ -220,7 +221,9 @@ export default class Explore extends Component {
             <div className = "load-more" onClick = {this.handleLoadMoreClicked.bind(this)}>
               <p>Load More...</p>
             </div>
+
           </div>
+
         </div>
       </div>
     )

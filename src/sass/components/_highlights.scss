@@ -1,0 +1,29 @@
+.highlights-section {
+
+  .highlights-wrapper {
+    position: relative;
+    padding-bottom: 40%;
+    height: 0;
+    .highlight {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      &-info {
+        position: absolute;
+        width: 33%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+      }
+      &-video {
+        position: relative;
+        video {
+          height: 40%;
+        }
+      }
+    }
+  }
+
+}
